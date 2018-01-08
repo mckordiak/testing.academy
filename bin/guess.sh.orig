@@ -1,0 +1,34 @@
+#!/bin/bash
+PLAY=y
+echo "guess the number from 1 to 20"
+while [[ $PLAY =~ ^(y|yes|YES|a|ano|ANO)$ ]];do
+SECRET=$[ $RANDOM % 21 ]
+TIP=0
+POKUS=5
+    while [ $TIP -ne $SECRET ] && [ $POKUS -gt 0 ]; do
+    echo -n "Gimme tip: "
+    read TIP
+    echo "Your tip: " $TIP
+
+    while [[ -z $TIP ]] || [[ ! $TIP =~ ^[0-9]+$ ]] || [[ $TIP -lt 1 ]] || [[ $TIP -gt 20 ]];do
+    echo "Type right pitchus"
+    read TIP
+    done
+    if [ $TIP -gt $SECRET ]; then
+       echo "Mine is lower than $TIP"
+    else 
+        if [ $TIP -lt $SECRET ]; then
+           echo "Mine is bigger than  $TIP"
+        else
+           echo "makaciQ"
+        fi
+    fi
+    POKUS=$(( POKUS -1 ))
+    echo "try no. $POKUS"
+    done
+        if [ $TIP -ne $SECRET ]
+        then echo "Fckd UP...it was $SECRET madafaka"
+        fi
+read -p "Wanna play again? press y" PLAY
+done
+echo "THX brooo"
