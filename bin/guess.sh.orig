@@ -1,13 +1,13 @@
 #!/bin/bash
 PLAY=y
-echo "guess the number from 1 to 20"
+dialog --infobox "Guess the number from 1 to 20" 3 33; sleep 3
 while [[ $PLAY =~ ^(y|yes|YES|a|ano|ANO)$ ]];do
 SECRET=$[ $RANDOM % 21 ]
 TIP=0
 POKUS=5
     while [ $TIP -ne $SECRET ] && [ $POKUS -gt 0 ]; do
     echo -n "Gimme tip: "
-    read TIP
+   read TIP
     echo "Your tip: " $TIP
 
     while [[ -z $TIP ]] || [[ ! $TIP =~ ^[0-9]+$ ]] || [[ $TIP -lt 1 ]] || [[ $TIP -gt 20 ]];do

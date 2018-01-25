@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-while true; do
-TIME= $(date +%H)
-PCNR= $(( ($TIME /2) +1 ))
-   
-    gsettings set org.gnome.desktop.background \ picture-uri "file:///${HOME}/Pictures/bitday/bitday${PCNR}.png"
-    sleep 1h
-    echo "There are no bitday images in your local Pictures/bitday."
+HOUR=$(date +%k)
+PICTURENR=$(( ($HOUR / 2) + 1 ))
+FILE="${HOME}/Pictures/bitday/bitday${PICTURENR}.png"
+if [[ ! -f ${FILE} ]]; then
+	echo "File ${FILE} doesn't exist." 1>&2
+	exit 1
+fi
+gsettings set org.gnome.desktop.background picture-uri ${FILE}
    
